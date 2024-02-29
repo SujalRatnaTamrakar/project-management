@@ -7,7 +7,7 @@ use Filament\Widgets\DoughnutChartWidget;
 
 class TicketsByType extends DoughnutChartWidget
 {
-    protected static ?int $sort = 2;
+    protected static ?int $sort = 7;
     protected static ?string $heading = 'Chart';
     protected static ?string $maxHeight = '300px';
     protected int|string|array $columnSpan = [
@@ -21,7 +21,7 @@ class TicketsByType extends DoughnutChartWidget
         return auth()->user()->can('List tickets');
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Tickets by types');
     }

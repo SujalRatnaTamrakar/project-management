@@ -7,6 +7,7 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
@@ -42,6 +43,11 @@ class ValidateAccount extends Component implements HasForms
                 ->label(__('Password confirmation'))
                 ->placeholder(__('Confirm your chosen password')),
         ];
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form->schema($this->getFormSchema());
     }
 
     public function validateAccount(): void

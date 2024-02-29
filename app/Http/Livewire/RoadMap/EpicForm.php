@@ -12,6 +12,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Livewire\Component;
 
 class EpicForm extends Component implements HasForms
@@ -37,9 +38,9 @@ class EpicForm extends Component implements HasForms
         return view('livewire.road-map.epic-form');
     }
 
-    protected function getFormSchema(): array
+    public function form(Form $form): Form
     {
-        return [
+        return $form->schema([
             Grid::make()
                 ->schema([
                     Select::make('project_id')
@@ -68,7 +69,7 @@ class EpicForm extends Component implements HasForms
                         ->label(__('Ends at'))
                         ->required(),
                 ]),
-        ];
+        ]);
     }
 
     public function submit(): void

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -35,12 +36,12 @@ class RoadMap extends Page implements HasForms
         'updateEpic'
     ];
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Road Map');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Management');
     }
@@ -62,9 +63,9 @@ class RoadMap extends Page implements HasForms
         }
     }
 
-    protected function getFormSchema(): array
+    public function form(Form $form): Form
     {
-        return [
+        return $form->schema([
             Select::make('selectedProject')
                 ->placeholder(__('Project'))
                 ->disableLabel()
@@ -80,7 +81,7 @@ class RoadMap extends Page implements HasForms
                         ->pluck('name', 'id')
                         ->toArray();
                 })
-        ];
+        ]);
     }
 
     public function filter(): void

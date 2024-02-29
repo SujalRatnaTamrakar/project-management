@@ -7,6 +7,7 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -50,6 +51,11 @@ class Attachments extends Component implements HasForms, HasTable
                 ->multiple()
                 ->disablePreview()
         ];
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form->schema($this->getFormSchema());
     }
 
     public function perform(): void

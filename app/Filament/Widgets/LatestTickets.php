@@ -10,7 +10,7 @@ use Illuminate\Support\HtmlString;
 
 class LatestTickets extends BaseWidget
 {
-    protected static ?int $sort = 6;
+    protected static ?int $sort = 5;
     protected int|string|array $columnSpan = [
         'sm' => 1,
         'md' => 6,

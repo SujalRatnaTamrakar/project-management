@@ -9,7 +9,7 @@ use Filament\Widgets\BarChartWidget;
 class UserTimeLogged extends BarChartWidget
 {
     protected static ?string $heading = 'Chart';
-    protected static ?int $sort = 5;
+    protected static ?int $sort = 9;
     protected static ?string $maxHeight = '300px';
     protected int|string|array $columnSpan = [
         'sm' => 1,
@@ -22,7 +22,7 @@ class UserTimeLogged extends BarChartWidget
         return auth()->user()->can('List tickets');
     }
 
-    protected function getHeading(): string
+    public function getHeading(): string
     {
         return __('Time logged by users');
     }

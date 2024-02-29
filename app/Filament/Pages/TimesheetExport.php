@@ -8,6 +8,7 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Filament\Forms\Components\DatePicker;
 use Maatwebsite\Excel\Facades\Excel;
@@ -23,7 +24,7 @@ class TimesheetExport extends Page implements HasForms
 
     protected static string $view = 'filament.pages.timesheet-export';
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Timesheet');
     }
@@ -33,9 +34,9 @@ class TimesheetExport extends Page implements HasForms
         $this->form->fill();
     }
 
-    protected function getFormSchema(): array
+    public function form(Form $form): Form
     {
-        return [
+        return $form->schema([
             Card::make()->schema([
                 Grid::make()
                     ->columns(2)
@@ -50,7 +51,7 @@ class TimesheetExport extends Page implements HasForms
                             ->label('End date')
                     ])
             ])
-        ];
+        ]);
     }
 
     public function create(): BinaryFileResponse

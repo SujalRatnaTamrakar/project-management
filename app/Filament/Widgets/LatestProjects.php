@@ -10,7 +10,7 @@ use Illuminate\Support\HtmlString;
 
 class LatestProjects extends BaseWidget
 {
-    protected static ?int $sort = 7;
+    protected static ?int $sort = 4;
     protected int|string|array $columnSpan = [
         'sm' => 1,
         'md' => 6,

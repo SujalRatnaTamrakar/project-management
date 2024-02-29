@@ -1,5 +1,9 @@
 <?php
 // config for JeffGreco13/FilamentBreezy
+use Filament\Http\Controllers\Auth\EmailVerificationController;
+use Filament\Pages\Auth\PasswordReset\ResetPassword;
+use Filament\Pages\Auth\Register;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -79,22 +83,22 @@ return [
     |--------------------------------------------------------------------------
     | Path to registration Livewire component.
     */
-    "registration_component_path" => \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Register::class,
+    "registration_component_path" => Register::class,
     /*
     |--------------------------------------------------------------------------
     | Path to password reset Livewire component.
     */
-    "password_reset_component_path" => \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\ResetPassword::class,
+    "password_reset_component_path" => ResetPassword::class,
     /*
     |--------------------------------------------------------------------------
     | Path to email verification Livewire component.
     */
-    "email_verification_component_path" => \JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Verify::class,
+    "email_verification_component_path" => Verify::class,
     /*
     |--------------------------------------------------------------------------
     | Path to email verification Controller component.
     */
-    "email_verification_controller_path" => \JeffGreco13\FilamentBreezy\Http\Controllers\EmailVerificationController::class,
+    "email_verification_controller_path" => EmailVerificationController::class,
     /*
     |--------------------------------------------------------------------------
     | Path to Profile page component.

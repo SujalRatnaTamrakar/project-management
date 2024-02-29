@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Settings\GeneralSettings;
 use Filament\Facades\Filament;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Vite;
 use Illuminate\Support\Facades\Config;
@@ -34,45 +37,48 @@ class AppServiceProvider extends ServiceProvider
         $this->configureApp();
 
         // Register custom Filament theme
-        Filament::serving(function () {
-            Filament::registerTheme(
-                app(Vite::class)('resources/css/filament.scss'),
-            );
-        });
-
-        // Register tippy styles
-        Filament::registerStyles([
-            'https://unpkg.com/tippy.js@6/dist/tippy.css',
-        ]);
-
-        // Register scripts
-        try {
-            Filament::registerScripts([
-                app(Vite::class)('resources/js/filament.js'),
-            ]);
-        } catch (\Exception $e) {
-            // Manifest not built yet!
-        }
-
-        // Add custom meta (favicon)
-        Filament::pushMeta([
-            new HtmlString('<link rel="icon"
-                                       type="image/x-icon"
-                                       href="' . config('app.logo') . '">'),
-        ]);
-
-        // Register navigation groups
-        Filament::registerNavigationGroups([
-            __('Management'),
-            __('Referential'),
-            __('Security'),
-            __('Settings'),
-        ]);
-
-        // Force HTTPS over HTTP
-        if (env('APP_FORCE_HTTPS') ?? false) {
-            URL::forceScheme('https');
-        }
+//        Filament::serving(function () {
+//            FilamentAsset::register([
+//                Css::make('custom-stylesheet', 'https://unpkg.com/tippy.js@6/dist/tippy.css'),
+//            ]);
+//            Filament::registerTheme(
+//                app(Vite::class)('resources/css/filament.scss'),
+//            );
+//        });
+////
+////        // Register tippy styles
+//        FilamentAsset::register([
+//            Css::make('tippy-stylesheet', 'https://unpkg.com/tippy.js@6/dist/tippy.css'),
+//        ]);
+//
+//        // Register scripts
+//        try {
+//            FilamentAsset::register([
+//                Js::make('custom-script', __DIR__ . '/../../resources/js/filament.js'),
+//            ]);
+//        } catch (\Exception $e) {
+//            // Manifest not built yet!
+//        }
+//
+//        // Add custom meta (favicon)
+//        /*Filament::pushMeta([
+//            new HtmlString('<link rel="icon"
+//                                       type="image/x-icon"
+//                                       href="' . config('app.logo') . '">'),
+//        ]);*/
+//
+//        // Register navigation groups
+//        Filament::registerNavigationGroups([
+//            __('Management'),
+//            __('Referential'),
+//            __('Security'),
+//            __('Settings'),
+//        ]);
+//
+//        // Force HTTPS over HTTP
+//        if (env('APP_FORCE_HTTPS') ?? false) {
+//            URL::forceScheme('https');
+//        }
     }
 
     private function configureApp(): void

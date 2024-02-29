@@ -18,7 +18,7 @@ class ViewProject extends ViewRecord
                     fn ()
                     => ($this->record->type === 'scrum' ? __('Scrum board') : __('Kanban board'))
                 )
-                ->icon('heroicon-o-view-boards')
+                ->icon('heroicon-o-document')
                 ->color('secondary')
                 ->url(function () {
                     if ($this->record->type === 'scrum') {

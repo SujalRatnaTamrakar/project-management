@@ -13,6 +13,7 @@ use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Livewire\Component;
 
 class IssueForm extends Component implements HasForms
@@ -62,9 +63,9 @@ class IssueForm extends Component implements HasForms
         $this->sprints = $this->project ? $this->project->sprints->pluck('name', 'id')->toArray() : [];
     }
 
-    protected function getFormSchema(): array
+    public function form(Form $form): Form
     {
-        return [
+        return $form->schema([
             Forms\Components\Grid::make()
                 ->schema([
                     Forms\Components\Grid::make(4)
@@ -168,7 +169,7 @@ class IssueForm extends Component implements HasForms
                         ->numeric()
                         ->columnSpan(4),
                 ]),
-        ];
+        ]);
     }
 
     public function submit(): void

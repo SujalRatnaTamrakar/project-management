@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HtmlString;
@@ -22,7 +23,7 @@ class JiraImport extends Page implements HasForms
 {
     use InteractsWithForms, JiraHelper;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cloud-download';
+    protected static ?string $navigationIcon = 'heroicon-o-document';
 
     protected static string $view = 'filament.pages.jira-import';
 
@@ -52,29 +53,29 @@ class JiraImport extends Page implements HasForms
         $this->form->fill();
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->can('Import from Jira');
     }
 
-    protected function getSubheading(): string|Htmlable|null
+    public function getSubheading(): string|Htmlable|null
     {
         return __('Use this section to login into your jira account and import tickets to this application');
     }
 
-    protected static function getNavigationLabel(): string
+    public static function getNavigationLabel(): string
     {
         return __('Jira import');
     }
 
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __('Settings');
     }
 
-    protected function getFormSchema(): array
+    public function form(Form $form): Form
     {
-        return [
+        return $form->schema([
             Card::make()
                 ->schema([
                     Wizard::make([
@@ -229,7 +230,7 @@ class JiraImport extends Page implements HasForms
                     ])
                         ->submitAction(new HtmlString("<button type='submit' class='px-3 py-2 bg-primary-500 hover:bg-primary-600 text-white rounded'>" . __('Import') . "</button>")),
                 ]),
-        ];
+        ]);
     }
 
     public function import(): void
